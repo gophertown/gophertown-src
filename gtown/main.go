@@ -107,7 +107,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 
 	idxs := searchIndex.Lookup([]byte(q), -1)
 	for _, idx := range idxs {
-		i := sort.Search(len(offsets), func(i int) bool { return offsets[i] >= idx })
+		i := sort.Search(len(offsets), func(i int) bool { return offsets[i] > idx })
 		if !seen[i] {
 			us = append(us, users[usernames[i]])
 			seen[i] = true
