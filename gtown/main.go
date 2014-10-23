@@ -158,6 +158,7 @@ func main() {
 		u.Username = name
 		u.Avatar = "https://avatars.githubusercontent.com/" + name
 		// TODO(dgryski): u.Note markdown -> html
+		// TODO(dgryski): handle IRC channels
 
 		users[name] = u
 
