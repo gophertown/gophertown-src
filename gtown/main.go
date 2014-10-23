@@ -157,6 +157,7 @@ func main() {
 		usernames = append(usernames, name)
 		u.Username = name
 		u.Avatar = "https://avatars.githubusercontent.com/" + name
+		// TODO(dgryski): respect show_avatar
 		// TODO(dgryski): u.Note markdown -> html
 		// TODO(dgryski): handle IRC channels
 
