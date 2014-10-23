@@ -12,6 +12,14 @@ The `gophertown.org` directory contains the frontend; `index.html` is the entry
 point. This is an ember.js app and is entirely client-based. It uses the
 backend API to get data.
 
+To get this running:
+
+```
+bash$ go get github.com/gophertown/gophertown-src/gtown
+bash$ git clone github.com/gophertown/gophertown-data
+bash$ gtown -gopherdir=gophertown-data/data/ -site=$GOPATH/src/github.com/gophertown/gophertown-src/gophertown.org/
+```
+
 ## License
 
 The backend code is copyright 2014 gophertown.org developers.
