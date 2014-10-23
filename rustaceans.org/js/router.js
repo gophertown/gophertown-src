@@ -19,7 +19,7 @@ Rustaceans.Router.map(function() {
 
 Rustaceans.PeopleRoute = Ember.Route.extend({
   model: function(params) {
-    return jQuery.getJSON('http://www.ncameron.org/rustaceans/user?username=' + params.username).then(function(res) {
+    return jQuery.getJSON('/gophers/user?username=' + params.username).then(function(res) {
       return { results: res };
     });
   },
@@ -33,7 +33,7 @@ Rustaceans.PeopleRoute = Ember.Route.extend({
 
 Rustaceans.SearchRoute = Ember.Route.extend({
   model: function(params) {
-    return jQuery.getJSON('http://www.ncameron.org/rustaceans/search?for=' + params.needle).then(function(res) {
+    return jQuery.getJSON('/gophers/search?for=' + params.needle).then(function(res) {
       return { results: res };
     });
   }
@@ -51,7 +51,8 @@ Rustaceans.ApplicationRoute = Ember.Route.extend({
 
 Rustaceans.RandomRoute = Ember.Route.extend({
   model: function(params) {
-    return jQuery.getJSON('http://www.ncameron.org/rustaceans/random').then(function(res) {
+    return jQuery.getJSON('/gophers/random').then(function(res) {
+        console.log(res)
       return { results: res };
     });
   }
