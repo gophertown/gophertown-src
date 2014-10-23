@@ -3,19 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>Rustaceans</title>
-    <link rel="stylesheet" type="text/css" href="http://www.rustaceans.org/rustaceans.org.css">
+    <link rel="stylesheet" type="text/css" href="/rustaceans.org.css">
     <meta name="description" content="Find contributors and people interested in the Rust programming language.">
-    <link rel="icon" href="http://www.rust-lang.org/favicon.ico">    
+    <link rel="icon" href="//www.rust-lang.org/favicon.ico">
 
 </head>
 <body class="container">
-<script src="http://www.rustaceans.org/js/libs/jquery-1.10.2.min.js"></script>
-<script src="http://www.rustaceans.org/js/libs/handlebars-1.0.0.js"></script>
-<script src="http://www.rustaceans.org/js/libs/ember.js"></script>
-<script src="http://www.rustaceans.org/js/libs/ember-data.js"></script>
+<script src="/js/libs/jquery-1.10.2.min.js"></script>
+<script src="/js/libs/handlebars-1.0.0.js"></script>
+<script src="/js/libs/ember.js"></script>
+<script src="/js/libs/ember-data.js"></script>
 
-<script src="http://www.rustaceans.org/js/application.js"></script>
-<script src="http://www.rustaceans.org/js/router.js"></script>
+<script src="/js/application.js"></script>
+<script src="/js/router.js"></script>
 
 <script type="text/x-handlebars" data-template-name="_search_box">
     <p class="pitch">
@@ -32,8 +32,8 @@
     {{#if name}}<div class="name"><span class="name">{{#link-to 'people' username}}{{name}}{{/link-to}}</span></div>{{/if}}
     <div class="row"><span class="key">GitHub username</span><span class="value"><a href="https://github.com/{{unbound username}}">{{username}}</a></span></div>
     {{#if irc}}<div class="row"><span class="key">irc nick</span><span class="value"><span class="irc-nick">{{irc}}</span>{{#if irc_channels}} on {{#each irc_channels}} <a href="irc://moznet/{{unbound this}}">#{{this}}</a> {{/each}}{{/if}}</span></div>{{/if}}
-    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="http://discuss.rust-lang.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
-    {{#if reddit}}<div class="row"><span class="key">reddit username</span><span class="value"><a href="http://www.reddit.com/user/{{unbound reddit}}">{{reddit}}</a></span></div>{{/if}}
+    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="//discuss.rust-lang.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
+    {{#if reddit}}<div class="row"><span class="key">reddit username</span><span class="value"><a href="//www.reddit.com/user/{{unbound reddit}}">{{reddit}}</a></span></div>{{/if}}
     {{#if twitter}}<div class="row"><span class="key">twitter username</span><span class="value"><a href="https://twitter.com/{{unbound twitter}}">{{twitter}}</a></span></div>{{/if}}
     {{#if website}}<div class="row"><span class="key">website</span><span class="value"><a href="{{unbound website}}">{{website}}</a></span></div>{{/if}}
     {{#if blog}}<div class="row"><span class="key">blog</span><span class="value"><a href="{{unbound blog}}">{{blog}}</a></span></div>{{/if}}
@@ -63,11 +63,11 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="index">
-    <img class="logo" src="http://www.rust-lang.org/logos/rust-logo-256x256-blk.png" height="128" width="128" alt="Rust logo" />
+    <img class="logo" src="//www.rust-lang.org/logos/rust-logo-256x256-blk.png" height="128" width="128" alt="Rust logo" />
     <div class="headsearch">{{partial "search_box"}}</div>
     <div class="clear"></div>
     <p class="pitch narrow">
-        <a href="http://www.rust-lang.org/">Rust</a> is a systems programming language that runs blazingly fast, prevents almost all crashes, and eliminates data races.
+        <a href="//www.rust-lang.org/">Rust</a> is a systems programming language that runs blazingly fast, prevents almost all crashes, and eliminates data races.
     </p>
     <p class="narrow">
         Rustaceans are people who use Rust, contribute to Rust, or are interested in the development of Rust.
@@ -93,8 +93,8 @@
             <li><a href="irc://moznet/servo">#servo</a> is for discussion of Servo, the browser engine written in Rust.</li>
             </ul>
             </li>
-            <li><a href="http://discuss.rust-lang.org/">Discourse</a>: for discussion of Rust language design and implementation. And bike-shedding.</li>
-            <li><a href="http://www.reddit.com/r/rust">Reddit</a>: for general Rust discussion.</li>
+            <li><a href="//discuss.rust-lang.org/">Discourse</a>: for discussion of Rust language design and implementation. And bike-shedding.</li>
+            <li><a href="//www.reddit.com/r/rust">Reddit</a>: for general Rust discussion.</li>
             <li><a href="https://mail.mozilla.org/listinfo/rust-dev">The rust-dev mailing list</a>: if you must.</li>
         </ul>
     </p>
