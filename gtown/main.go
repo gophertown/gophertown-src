@@ -157,6 +157,7 @@ func main() {
 		usernames = append(usernames, name)
 		u.Username = name
 		u.Avatar = "https://avatars.githubusercontent.com/" + name
+		// TODO(dgryski): u.Note markdown -> html
 
 		users[name] = u
 
