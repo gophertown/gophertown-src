@@ -1,23 +1,23 @@
-Rustaceans.Router.map(function() {
+GopherTown.Router.map(function() {
   this.resource('index', { path: '/' });
 });
-Rustaceans.Router.map(function() {
+GopherTown.Router.map(function() {
   this.resource('index', { path: '/index.html' });
 });
 
-Rustaceans.Router.map(function() {
+GopherTown.Router.map(function() {
   this.route('search', { path: 'search/:needle' });
 });
 
-Rustaceans.Router.map(function() {
+GopherTown.Router.map(function() {
   this.resource('random', { path: '/random' });
 });
 
-Rustaceans.Router.map(function() {
+GopherTown.Router.map(function() {
   this.resource('people', { path: '/:username' });
 });
 
-Rustaceans.PeopleRoute = Ember.Route.extend({
+GopherTown.PeopleRoute = Ember.Route.extend({
   model: function(params) {
     return jQuery.getJSON('/gophers/user?username=' + params.username).then(function(res) {
       return { results: res };
@@ -31,7 +31,7 @@ Rustaceans.PeopleRoute = Ember.Route.extend({
 });
 
 
-Rustaceans.SearchRoute = Ember.Route.extend({
+GopherTown.SearchRoute = Ember.Route.extend({
   model: function(params) {
     return jQuery.getJSON('/gophers/search?for=' + params.needle).then(function(res) {
       return { results: res };
@@ -40,7 +40,7 @@ Rustaceans.SearchRoute = Ember.Route.extend({
 });
 
 
-Rustaceans.ApplicationRoute = Ember.Route.extend({
+GopherTown.ApplicationRoute = Ember.Route.extend({
   actions: {
     search: function(val) {
       this.transitionTo('search', val);
@@ -49,7 +49,7 @@ Rustaceans.ApplicationRoute = Ember.Route.extend({
 });
 
 
-Rustaceans.RandomRoute = Ember.Route.extend({
+GopherTown.RandomRoute = Ember.Route.extend({
   model: function(params) {
     return jQuery.getJSON('/gophers/random').then(function(res) {
         console.log(res)

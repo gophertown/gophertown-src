@@ -1,5 +1,5 @@
-window.Rustaceans = Ember.Application.create();
+window.GopherTown = Ember.Application.create();
 
-Rustaceans.Router.reopen({
+GopherTown.Router.reopen({
   location: 'history'
 });
