@@ -110,7 +110,6 @@ func main() {
 
 	var users map[string]user = make(map[string]user)
 	var usernames []string
-	var searchIndex *suffixarray.Index
 	var offsets []int
 
 	flag.Parse()
@@ -159,7 +158,7 @@ func main() {
 	})
 
 	log.Println("loaded", len(users), "gophers")
-	searchIndex = suffixarray.New(searchData)
+	searchIndex := suffixarray.New(searchData)
 
 	if p := os.Getenv("PORT"); p != "" {
 		*port, _ = strconv.Atoi(p)
