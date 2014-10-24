@@ -32,11 +32,6 @@ type user struct {
 
 const contentTypeJSON = "application/json"
 
-var users map[string]user = make(map[string]user)
-var usernames []string
-var searchIndex *suffixarray.Index
-var offsets []int
-
 func (u user) keywords() []byte {
 
 	terms := make(map[string]struct{})
@@ -61,7 +56,7 @@ func (u user) keywords() []byte {
 	return b.Bytes()
 }
 
-func userHandler(w http.ResponseWriter, r *http.Request) {
+func userHandler(w http.ResponseWriter, r *http.Request, users map[string]user) {
 
 	name := r.FormValue("username")
 
@@ -78,7 +73,7 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 	jenc.Encode([]user{u})
 }
 
-func randomHandler(w http.ResponseWriter, r *http.Request) {
+func randomHandler(w http.ResponseWriter, r *http.Request, users map[string]user, usernames []string) {
 	n := rand.Intn(len(usernames))
 	u := users[usernames[n]]
 	w.Header().Set("Content-Type", contentTypeJSON)
@@ -86,7 +81,7 @@ func randomHandler(w http.ResponseWriter, r *http.Request) {
 	jenc.Encode([]user{u})
 }
 
-func searchHandler(w http.ResponseWriter, r *http.Request) {
+func searchHandler(w http.ResponseWriter, r *http.Request, users map[string]user, usernames []string, searchIndex *suffixarray.Index, offsets []int) {
 
 	q := r.FormValue("for")
 
@@ -112,6 +107,11 @@ func main() {
 	gopherdir := flag.String("gopherdir", "", "gopher json files")
 	sitedir := flag.String("site", ".", "site to serve")
 	port := flag.Int("port", 8080, "port")
+
+	var users map[string]user = make(map[string]user)
+	var usernames []string
+	var searchIndex *suffixarray.Index
+	var offsets []int
 
 	flag.Parse()
 
@@ -165,9 +165,11 @@ func main() {
 		*port, _ = strconv.Atoi(p)
 	}
 
-	http.HandleFunc("/gophers/user", userHandler)
-	http.HandleFunc("/gophers/random", randomHandler)
-	http.HandleFunc("/gophers/search", searchHandler)
+	http.HandleFunc("/gophers/user", func(w http.ResponseWriter, r *http.Request) { userHandler(w, r, users) })
+	http.HandleFunc("/gophers/random", func(w http.ResponseWriter, r *http.Request) { randomHandler(w, r, users, usernames) })
+	http.HandleFunc("/gophers/search", func(w http.ResponseWriter, r *http.Request) {
+		searchHandler(w, r, users, usernames, searchIndex, offsets)
+	})
 
 	// everything else comes from the site
 	http.Handle("/", http.FileServer(http.Dir(*sitedir)))
