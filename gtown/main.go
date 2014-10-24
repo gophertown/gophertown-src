@@ -10,6 +10,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 	"sort"
 	"strconv"
@@ -116,30 +117,27 @@ func main() {
 
 	var searchData []byte
 
-	filepath.Walk(*gopherdir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
+	dataFiles, err := filepath.Glob(*gopherdir + "/*.json")
+	if err != nil {
+		log.Fatalf("unable to load any gophers: %v", err)
+	}
 
-		if !strings.HasSuffix(info.Name(), ".json") {
-			return nil
-		}
-
-		ujs, err := ioutil.ReadFile(path)
+	for _, f := range dataFiles {
+		ujs, err := ioutil.ReadFile(f)
 		if err != nil {
-			log.Println(path, err)
-			return nil
+			log.Println(f, err)
+			continue
 		}
 
 		var u user
 
 		err = json.Unmarshal(ujs, &u)
 		if err != nil {
-			log.Println(path, err)
-			return nil
+			log.Println(f, err)
+			continue
 		}
 
-		name := strings.TrimSuffix(info.Name(), ".json")
+		name := strings.TrimSuffix(path.Base(f), ".json")
 
 		usernames = append(usernames, name)
 		u.Username = name
@@ -153,9 +151,7 @@ func main() {
 		// update search index
 		searchData = append(searchData, u.keywords()...)
 		offsets = append(offsets, len(searchData))
-
-		return nil
-	})
+	}
 
 	log.Println("loaded", len(users), "gophers")
 	searchIndex := suffixarray.New(searchData)
