@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"index/suffixarray"
@@ -36,41 +37,28 @@ var usernames []string
 var searchIndex *suffixarray.Index
 var offsets []int
 
-func (u user) keywords() string {
+func (u user) keywords() []byte {
 
-	var k []string
+	terms := make(map[string]struct{})
 
-	k = append(k, u.Username)
+	terms[u.Username] = struct{}{}
+	terms[u.Name] = struct{}{}
+	terms[u.IRC] = struct{}{}
+	terms[u.Email] = struct{}{}
+	terms[u.Discourse] = struct{}{}
+	terms[u.Reddit] = struct{}{}
+	terms[u.Twitter] = struct{}{}
+	terms[u.Blog] = struct{}{}
+	terms[u.Website] = struct{}{}
+	terms[u.Notes] = struct{}{}
 
-	if u.Name != "" {
-		k = append(k, u.Name)
-	}
-	if u.IRC != "" {
-		k = append(k, u.IRC)
-	}
-	if u.Email != "" {
-		k = append(k, u.Email)
-	}
-	if u.Discourse != "" {
-		k = append(k, u.Discourse)
-	}
-	if u.Reddit != "" {
-		k = append(k, u.Reddit)
-	}
-	if u.Twitter != "" {
-		k = append(k, u.Twitter)
-	}
-	if u.Blog != "" {
-		k = append(k, u.Blog)
-	}
-	if u.Website != "" {
-		k = append(k, u.Website)
-	}
-	if u.Notes != "" {
-		k = append(k, u.Notes)
+	b := bytes.Buffer{}
+	for k := range terms {
+		b.WriteString(k)
+		b.WriteByte(' ')
 	}
 
-	return strings.Join(k, " ")
+	return b.Bytes()
 }
 
 func userHandler(w http.ResponseWriter, r *http.Request) {
@@ -164,7 +152,7 @@ func main() {
 		users[name] = u
 
 		// update search index
-		searchData = append(searchData, []byte(u.keywords())...)
+		searchData = append(searchData, u.keywords()...)
 		offsets = append(offsets, len(searchData))
 
 		return nil
