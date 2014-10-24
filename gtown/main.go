@@ -134,7 +134,7 @@ func main() {
 			return err
 		}
 
-		if !strings.HasSuffix(info.Name(), ".json") || info.Name() == "template.json" {
+		if !strings.HasSuffix(info.Name(), ".json") {
 			return nil
 		}
 
