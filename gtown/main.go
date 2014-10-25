@@ -166,8 +166,12 @@ func main() {
 		searchHandler(w, r, users, usernames, searchIndex, offsets)
 	})
 
-	// everything else comes from the site
-	http.Handle("/", http.FileServer(http.Dir(*sitedir)))
+	// The static files we know about
+	http.Handle("/static/", http.FileServer(http.Dir(*sitedir)))
+
+	// Everything else serves up the single-page app -- routing etc are handled on the client side.
+	indexhtml := *sitedir + "/index.html"
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { http.ServeFile(w, r, indexhtml) })
 
 	log.Println("listening on port", *port)
 	log.Fatalln(http.ListenAndServe(":"+strconv.Itoa(*port), nil))
