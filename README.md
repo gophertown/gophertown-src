@@ -16,7 +16,7 @@ To get this running:
 
 ```
 bash$ go get github.com/gophertown/gophertown-src/gtown
-bash$ git clone github.com/gophertown/gophertown-data
+bash$ git clone https://github.com/gophertown/gophertown-data.git
 bash$ gtown -gopherdir=gophertown-data/data/ -site=$GOPATH/src/github.com/gophertown/gophertown-src/gophertown.org/
 ```
 
