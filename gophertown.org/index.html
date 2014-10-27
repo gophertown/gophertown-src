@@ -19,7 +19,7 @@
 
 <script type="text/x-handlebars" data-template-name="_search_box">
     <p class="pitch">
-        Search for a Gopher:
+    <label>Search for a Gopher:</label>
     {{input type="text" placeholder="search" action="search" on="enter" class="searchbox"}}
     </p>
     <p class="searchnotes">(by name, irc nick, username for Reddit, GitHub, Discourse, etc.)</p>
@@ -32,7 +32,7 @@
     {{#if name}}<div class="name"><span class="name">{{#link-to 'people' username}}{{name}}{{/link-to}}</span></div>{{/if}}
     <div class="row"><span class="key">GitHub username</span><span class="value"><a href="https://github.com/{{unbound username}}">{{username}}</a></span></div>
     {{#if irc}}<div class="row"><span class="key">irc nick</span><span class="value"><span class="irc-nick">{{irc}}</span>{{#if irc_channels}} on {{#each irc_channels}} <a href="irc://moznet/{{unbound this}}">#{{this}}</a> {{/each}}{{/if}}</span></div>{{/if}}
-    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="//discuss.rust-lang.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
+    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="//discuss.gophertown.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
     {{#if reddit}}<div class="row"><span class="key">reddit username</span><span class="value"><a href="//www.reddit.com/user/{{unbound reddit}}">{{reddit}}</a></span></div>{{/if}}
     {{#if twitter}}<div class="row"><span class="key">twitter username</span><span class="value"><a href="https://twitter.com/{{unbound twitter}}">{{twitter}}</a></span></div>{{/if}}
     {{#if website}}<div class="row"><span class="key">website</span><span class="value"><a href="{{unbound website}}">{{website}}</a></span></div>{{/if}}
@@ -63,16 +63,18 @@
 </script>
 
 <script type="text/x-handlebars" data-template-name="index">
-    <img class="logo" src="//golang.org/doc/gopher/frontpage.png" height="128" width="128" alt="Gopher logo" />
-    <div class="headsearch">{{partial "search_box"}}</div>
+    <div class="headsearch">
+        <img class="head" src="static/img/gopherhead.png" height="80" alt="Gopher logo" />
+        {{partial "search_box"}}
+    </div>
     <div class="clear"></div>
-    <p class="pitch narrow">
+    <p class="pitch ">
         <a href="//golang.org/">Go</a> is an open source programming language that makes it easy to build simple, reliable, and efficient software.
     </p>
-    <p class="narrow">
+    <p >
         Gophers are people who use Go, contribute to Go, or are interested in the development of Go.
     </p>
-    <p class="narrow">
+    <p >
         This website is for finding Gophers.
         Wondering who is behind that GitHub username or IRC nick? Here is where to find out (search at the top of the page).
     </p>
@@ -81,12 +83,8 @@
     <p>
         Gophers communicate via many channels:
         <ul>
-            <li>IRC on Freenode.
-            <ul>
-            <li><a href="irc://freenode/go-nuts">#go-nuts</a> is for all things Go;</li>
-            </ul>
+            <li>IRC on Freenode. <a href="irc://freenode/go-nuts">#go-nuts</a> is for all things Go;</li>
             <li><a href="https://twitter.com/hashtag/golang">#golang</a> Twitter hashtag</li>
-            </li>
             <li><a href="//www.reddit.com/r/golang">Reddit</a>: for general Go discussion.</li>
             <li><a href="https://groups.google.com/forum/m/#!forum/golang-nuts">The golang-nuts mailing list</a>
             <li><a href="https://groups.google.com/forum/m/#!forum/golang-dev">The golang-dev mailing list</a>
