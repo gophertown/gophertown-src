@@ -32,7 +32,8 @@
     {{#if name}}<div class="name"><span class="name">{{#link-to 'people' username}}{{name}}{{/link-to}}</span></div>{{/if}}
     <div class="row"><span class="key">GitHub username</span><span class="value"><a href="https://github.com/{{unbound username}}">{{username}}</a></span></div>
     {{#if irc}}<div class="row"><span class="key">irc nick</span><span class="value"><span class="irc-nick">{{irc}}</span>{{#if irc_channels}} on {{#each irc_channels}} <a href="irc://moznet/{{unbound this}}">#{{this}}</a> {{/each}}{{/if}}</span></div>{{/if}}
-    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="//discuss.rust-lang.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
+    {{#if discourse}}<div class="row"><span class="key">discourse username</span><span class="value"><a href="//discuss.gophertown.org/users/{{unbound discourse}}">{{discourse}}</a></span></div>{{/if}}
+    {{#if slack}}<div class="row"><span class="key">slack username</span><span class="value"><a href="https://gophers.slack.com/team/{{unbound slack}}">{{slack}}</a></span></div>{{/if}}
     {{#if reddit}}<div class="row"><span class="key">reddit username</span><span class="value"><a href="//www.reddit.com/user/{{unbound reddit}}">{{reddit}}</a></span></div>{{/if}}
     {{#if twitter}}<div class="row"><span class="key">twitter username</span><span class="value"><a href="https://twitter.com/{{unbound twitter}}">{{twitter}}</a></span></div>{{/if}}
     {{#if website}}<div class="row"><span class="key">website</span><span class="value"><a href="{{unbound website}}">{{website}}</a></span></div>{{/if}}
