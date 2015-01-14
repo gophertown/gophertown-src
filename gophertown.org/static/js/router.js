@@ -1,8 +1,8 @@
 GopherTown.Router.map(function() {
-  this.resource('index', { path: '/' });
+  this.resource('index', { path: '/index.html' });
 });
 GopherTown.Router.map(function() {
-  this.resource('index', { path: '/index.html' });
+  this.resource('index', { path: '/' });
 });
 
 GopherTown.Router.map(function() {
@@ -52,7 +52,7 @@ GopherTown.ApplicationRoute = Ember.Route.extend({
 GopherTown.RandomRoute = Ember.Route.extend({
   model: function(params) {
     return jQuery.getJSON('/gophers/random').then(function(res) {
-        console.log(res)
+        console.log(res);
       return { results: res };
     });
   }
