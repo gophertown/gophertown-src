@@ -23,6 +23,7 @@ type user struct {
 	IRC       string `json:"irc"`
 	Email     string `json:"email"`
 	Discourse string `json:"discourse"`
+	Slack     string `json:"slack"`
 	Reddit    string `json:"reddit"`
 	Twitter   string `json:"twitter"`
 	Blog      string `json:"blog"`
@@ -42,6 +43,7 @@ func (u user) keywords() []byte {
 	terms[u.IRC] = struct{}{}
 	terms[u.Email] = struct{}{}
 	terms[u.Discourse] = struct{}{}
+	terms[u.Slack] = struct{}{}
 	terms[u.Reddit] = struct{}{}
 	terms[u.Twitter] = struct{}{}
 	terms[u.Blog] = struct{}{}
